@@ -4,23 +4,11 @@ on:
   push:
     branches: ["*"]
 
-env:
-  IMAGE_NAME: lcas0112/docker-devops
-
 jobs:
-  build:
+  build: 
     runs-on: ubuntu-latest
-    outputs:
-      image_full_tag: ${{ env.IMAGE_NAME }}:latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Build Docker image
-        run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:latest
-
-      - name: Login to Docker Hub
-        run: |
-          docker login -u lcas0112 -p ${{ secrets.DOCKER_PASSWORD }}
-          docker push ${{ env.IMAGE_NAME }}:latest
+      - name: checkout repository
+        uses: actions/checkout@v3
+      - name: build docker image
+        run: docker build -t imgdockerfile .
