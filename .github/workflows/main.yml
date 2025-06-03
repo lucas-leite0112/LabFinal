@@ -21,6 +21,6 @@ jobs:
         run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:latest
 
       - name: Login to Docker Hub
-        run:
+        run: |
           docker login -u lcas0112 -p ${{ secrets.DOCKER_PASSWORD }}
           docker push ${{ env.IMAGE_NAME }}:latest
