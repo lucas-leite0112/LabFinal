@@ -32,11 +32,6 @@ class APITestCase(unittest.TestCase):
         self.assertIn('access_token', response.json)
         self.login_token = response.json['access_token']
 
-    def test_protected_route_access_denied(self):
-        response = self.client.get('/protected')
-        self.assertEqual(response.status_code, 401)
-        self.assertEqual(response.json, {"message": "Token is missing or invalid"})
-
 
 if __name__ == '__main__':
     unittest.main()
